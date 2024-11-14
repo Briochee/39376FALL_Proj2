@@ -1,0 +1,30 @@
+Query 1 Results
+Compound ID: Compound::DB08865, Genes Associated: 585, Diseases Associated: 1
+Compound ID: Compound::DB01254, Genes Associated: 564, Diseases Associated: 1
+Compound ID: Compound::DB00997, Genes Associated: 532, Diseases Associated: 17
+Compound ID: Compound::DB00570, Genes Associated: 523, Diseases Associated: 7
+Compound ID: Compound::DB00390, Genes Associated: 522, Diseases Associated: 2
+
+Query 2 Results
+Disease::DOID:10763 associated with 70 compounds
+  - disease name: hypertension
+Disease::DOID:2531 associated with 53 compounds
+  - disease name: hematologic cancer
+Disease::DOID:1612 associated with 43 compounds
+  - disease name: breast cancer
+Disease::DOID:2841 associated with 40 compounds
+  - disease name: asthma
+Disease::DOID:3393 associated with 38 compounds
+  - disease name: coronary artery disease
+
+Query 3 Results
+Gene::991 associated with 168 compounds
+  - gene name: CDC20
+Gene::54541 associated with 135 compounds
+  - gene name: DDIT4
+Gene::6192 associated with 127 compounds
+  - gene name: RPS4Y1
+Gene::5111 associated with 119 compounds
+  - gene name: PCNA
+Gene::1738 associated with 117 compounds
+  - gene name: DLD
