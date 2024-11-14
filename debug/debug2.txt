@@ -1,0 +1,62 @@
+70 compounds: 1 diseases
+  - Disease::DOID:10763
+53 compounds: 1 diseases
+  - Disease::DOID:2531
+43 compounds: 1 diseases
+  - Disease::DOID:1612
+40 compounds: 1 diseases
+  - Disease::DOID:2841
+38 compounds: 1 diseases
+  - Disease::DOID:3393
+
+70 compounds: 1 diseases
+  - hypertension
+    Compounds: Compound::DB00808, Compound::DB01244, Compound::DB00401, Compound::DB01023, Compound::DB01170, Compound::DB00270, Compound::DB00226, Compound::DB00178, Compound::DB00691, Compound::DB00195, Compound::DB00421, Compound::DB01162, Compound::DB01115, Compound::DB01203, Compound::DB00622, Compound::DB01136, Compound::DB00774, Compound::DB00999, Compound::DB00264, Compound::DB00594, Compound::DB00968, Compound::DB00310, Compound::DB01076, Compound::DB00350, Compound::DB00661, Compound::DB00519, Compound::DB00722, Compound::DB00796, Compound::DB00966, Compound::DB00590, Compound::DB00373, Compound::DB00214, Compound::DB00275, Compound::DB00598, Compound::DB00887, Compound::DB01193, Compound::DB00657, Compound::DB01119, Compound::DB00206, Compound::DB00960, Compound::DB01275, Compound::DB01029, Compound::DB00492, Compound::DB00876, Compound::DB00880, Compound::DB00678, Compound::DB01197, Compound::DB00177, Compound::DB00800, Compound::DB00629, Compound::DB00187, Compound::DB00436, Compound::DB00575, Compound::DB00881, Compound::DB00584, Compound::DB04861, Compound::DB00384, Compound::DB00457, Compound::DB00343, Compound::DB00571, Compound::DB00542, Compound::DB00790, Compound::DB00903, Compound::DB01018, Compound::DB00524, Compound::DB00700, Compound::DB00695, Compound::DB00381, Compound::DB01359, Compound::DB00692
+53 compounds: 1 diseases
+  - hematologic cancer
+    Compounds: Compound::DB00444, Compound::DB00888, Compound::DB01280, Compound::DB00541, Compound::DB00443, Compound::DB01181, Compound::DB00631, Compound::DB00352, Compound::DB00441, Compound::DB00242, Compound::DB01008, Compound::DB00762, Compound::DB01042, Compound::DB00851, Compound::DB00773, Compound::DB01168, Compound::DB00553, Compound::DB00620, Compound::DB00480, Compound::DB02546, Compound::DB00291, Compound::DB00445, Compound::DB00307, Compound::DB01073, Compound::DB00619, Compound::DB00959, Compound::DB00635, Compound::DB00860, Compound::DB00261, Compound::DB08877, Compound::DB01177, Compound::DB00570, Compound::DB00997, Compound::DB00361, Compound::DB01005, Compound::DB01041, Compound::DB00563, Compound::DB00987, Compound::DB01204, Compound::DB00552, Compound::DB00290, Compound::DB01254, Compound::DB00188, Compound::DB01234, Compound::DB01206, Compound::DB01033, Compound::DB00523, Compound::DB00262, Compound::DB04868, Compound::DB00515, Compound::DB04572, Compound::DB00694, Compound::DB00482
+43 compounds: 1 diseases
+  - breast cancer
+    Compounds: Compound::DB01204, Compound::DB00563, Compound::DB01177, Compound::DB08871, Compound::DB04572, Compound::DB01259, Compound::DB01248, Compound::DB01006, Compound::DB00947, Compound::DB00539, Compound::DB00361, Compound::DB00675, Compound::DB04845, Compound::DB00997, Compound::DB01229, Compound::DB00570, Compound::DB00481, Compound::DB00977, Compound::DB00351, Compound::DB08866, Compound::DB01234, Compound::DB01420, Compound::DB00603, Compound::DB00655, Compound::DB00783, Compound::DB00291, Compound::DB01101, Compound::DB00441, Compound::DB00958, Compound::DB01185, Compound::DB00544, Compound::DB01042, Compound::DB01217, Compound::DB00762, Compound::DB00990, Compound::DB00014, Compound::DB00445, Compound::DB00443, Compound::DB00433, Compound::DB00673, Compound::DB00286, Compound::DB00624, Compound::DB06710
+40 compounds: 1 diseases
+  - asthma
+    Compounds: Compound::DB01410, Compound::DB01274, Compound::DB00471, Compound::DB01064, Compound::DB00277, Compound::DB01409, Compound::DB01222, Compound::DB00764, Compound::DB00983, Compound::DB00959, Compound::DB00920, Compound::DB01223, Compound::DB01291, Compound::DB00588, Compound::DB00620, Compound::DB00744, Compound::DB00871, Compound::DB00443, Compound::DB08906, Compound::DB01364, Compound::DB00852, Compound::DB00635, Compound::DB00651, Compound::DB00860, Compound::DB00741, Compound::DB00394, Compound::DB00716, Compound::DB01003, Compound::DB00938, Compound::DB00180, Compound::DB01001, Compound::DB01234, Compound::DB00549, Compound::DB05039, Compound::DB00455, Compound::DB05389, Compound::DB00221, Compound::DB00332, Compound::DB00816, Compound::DB00668
+38 compounds: 1 diseases
+  - coronary artery disease
+    Compounds: Compound::DB01098, Compound::DB00775, Compound::DB08860, Compound::DB00966, Compound::DB00275, Compound::DB00519, Compound::DB01039, Compound::DB01076, Compound::DB00722, Compound::DB01241, Compound::DB00945, Compound::DB00178, Compound::DB00373, Compound::DB00295, Compound::DB00883, Compound::DB00390, Compound::DB01115, Compound::DB00177, Compound::DB00641, Compound::DB08816, Compound::DB00678, Compound::DB00627, Compound::DB00700, Compound::DB00973, Compound::DB00695, Compound::DB00227, Compound::DB01197, Compound::DB01359, Compound::DB00584, Compound::DB00790, Compound::DB00758, Compound::DB00175, Compound::DB00281, Compound::DB00727, Compound::DB01020, Compound::DB00343, Compound::DB00975, Compound::DB00381
+
+
+70 compounds: 1 diseases
+  - hypertension
+53 compounds: 1 diseases
+  - hematologic cancer
+43 compounds: 1 diseases
+  - breast cancer
+40 compounds: 1 diseases
+  - asthma
+38 compounds: 1 diseases
+  - coronary artery disease
+
+
+70 compounds: 1 diseases
+  - Disease::DOID:10763 : hypertension
+53 compounds: 1 diseases
+  - Disease::DOID:2531 : hematologic cancer
+43 compounds: 1 diseases
+  - Disease::DOID:1612 : breast cancer
+40 compounds: 1 diseases
+  - Disease::DOID:2841 : asthma
+38 compounds: 1 diseases
+  - Disease::DOID:3393 : coronary artery disease
+
+
+Disease::DOID:10763 associated with 70 compounds
+  - disease name : hypertension
+Disease::DOID:2531 associated with 53 compounds
+  - disease name : hematologic cancer
+Disease::DOID:1612 associated with 43 compounds
+  - disease name : breast cancer
+Disease::DOID:2841 associated with 40 compounds
+  - disease name : asthma
+Disease::DOID:3393 associated with 38 compounds
+  - disease name : coronary artery disease
