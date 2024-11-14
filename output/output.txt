@@ -17,14 +17,15 @@ Disease::DOID:2841 associated with 40 compounds
 Disease::DOID:3393 associated with 38 compounds
   - disease name: coronary artery disease
 
+
 Query 3 Results
-Gene::991 associated with 168 compounds
-  - gene name: CDC20
-Gene::54541 associated with 135 compounds
-  - gene name: DDIT4
-Gene::6192 associated with 127 compounds
-  - gene name: RPS4Y1
-Gene::5111 associated with 119 compounds
-  - gene name: PCNA
-Gene::1738 associated with 117 compounds
-  - gene name: DLD
+Gene::1576 associated with 516 compounds
+  - gene name: CYP3A4
+Gene::1565 associated with 293 compounds
+  - gene name: CYP2D6
+Gene::5243 associated with 272 compounds
+  - gene name: ABCB1
+Gene::1559 associated with 262 compounds
+  - gene name: CYP2C9
+Gene::1544 associated with 230 compounds
+  - gene name: CYP1A2
