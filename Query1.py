@@ -1,50 +1,38 @@
 from pyspark import SparkContext
 
-# initialize a Spark context
-sc = SparkContext(appName="Proj2Query1")
+def parse_line(line):
+    parts = line.split('\t')
+    return (parts[0], parts[1], parts[2])
 
-# load data into RDDs
-nodes_rdd = sc.textFile("hetionet/nodes.tsv")
-edges_rdd = sc.textFile("hetionet/edges.tsv")
+def filter_compound_relations(entry):
+    _, relation, _ = entry
+    return relation.startswith('C')  # focus on relations starting with 'C' indicating compound interactions
 
-# parse nodes
-def parse_nodes(line):
-    parts = line.split("\t")
-    return (parts[0], parts[2].strip())  # (node_id, type), ignoring name
+def main():
+    sc = SparkContext("local", "Proj2Query1")
+    
+    # load the data from the TSV file
+    lines = sc.textFile("hetionet/edges.tsv")
+    
+    # skip the header and parse each line
+    header = lines.first()
+    data = lines.filter(lambda line: line != header).map(parse_line)
+    
+    # filter and map relationships
+    compound_to_gene = data.filter(lambda x: 'G' in x[1] and 'C' == x[0][:1]).map(lambda x: (x[0], 1)).reduceByKey(lambda a, b: a + b)
+    compound_to_disease = data.filter(lambda x: 'D' in x[1] and 'C' == x[0][:1]).map(lambda x: (x[0], 1)).reduceByKey(lambda a, b: a + b)
 
-# parse edges
-def parse_edges(line):
-    parts = line.split("\t")
-    return (parts[0], parts[2].strip())  # (source_id, target_id), ignoring metaedge
+    # join the two datasets on the compound key
+    compound_associations = compound_to_gene.join(compound_to_disease)
 
-# map nodes to their types
-node_types = nodes_rdd.map(parse_nodes).cache()
+    # sort by number of genes in descending order and take top 5
+    top_results = compound_associations.sortBy(lambda x: x[1][0], ascending=False).take(5)
+    
+    print("Query 1 Results")
+    for compound, (gene_count, disease_count) in top_results:
+        print(f"Compound: {compound}\n\t- {gene_count} genes {disease_count} diseases associated")
+        
+    sc.stop()
 
-# node types as a dictionary
-node_types_dict = node_types.collectAsMap()
-node_types_bc = sc.broadcast(node_types_dict)
-
-# filter to get edges that are from compounds to genes or diseases
-def filter_edges(edge):
-    source_type = node_types_bc.value.get(edge[0], None)
-    target_type = node_types_bc.value.get(edge[1], None)
-    return source_type == 'Compound' and (target_type == 'Gene' or target_type == 'Disease')
-
-# map edges to count gene and disease connections
-def edge_mapper(edge):
-    target_type = node_types_bc.value[edge[1]]
-    return (edge[0], (1 if target_type == 'Gene' else 0, 1 if target_type == 'Disease' else 0))
-
-# process edges
-relevant_edges = edges_rdd.map(parse_edges).filter(filter_edges)
-compound_counts = relevant_edges.map(edge_mapper).reduceByKey(lambda a, b: (a[0] + b[0], a[1] + b[1]))
-
-# sort by the number of genes associated, descending
-top_compounds = compound_counts.sortBy(lambda x: x[1][0], ascending=False).take(5)
-
-print("Query 1 Results")
-for result in top_compounds:
-    print("Compound ID: {}, Genes Associated: {}, Diseases Associated: {}".format(result[0], result[1][0], result[1][1]))
-
-# stop the Spark context
-sc.stop()
+if __name__ == "__main__":
+    main()
