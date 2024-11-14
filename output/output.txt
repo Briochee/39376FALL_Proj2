@@ -1,9 +1,14 @@
 Query 1 Results
-Compound ID: Compound::DB08865, Genes Associated: 585, Diseases Associated: 1
-Compound ID: Compound::DB01254, Genes Associated: 564, Diseases Associated: 1
-Compound ID: Compound::DB00997, Genes Associated: 532, Diseases Associated: 17
-Compound ID: Compound::DB00570, Genes Associated: 523, Diseases Associated: 7
-Compound ID: Compound::DB00390, Genes Associated: 522, Diseases Associated: 2
+Compound: Compound::DB08865
+	- 585 genes 1 diseases associated
+Compound: Compound::DB01254
+	- 564 genes 1 diseases associated
+Compound: Compound::DB00997
+	- 532 genes 17 diseases associated
+Compound: Compound::DB00570
+	- 523 genes 7 diseases associated
+Compound: Compound::DB00390
+	- 522 genes 2 diseases associated
 
 Query 2 Results
 Disease::DOID:10763 associated with 70 compounds
