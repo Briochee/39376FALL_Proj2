@@ -6,7 +6,7 @@ def parse_line(line):
 
 def filter_relations(entry):
     source, relation, target = entry
-    return relation in {'CuG', 'CdG'}   # gene associations
+    return relation in {'CuG', 'CdG', "CbG"}   # gene associations
 
 def main(show_compounds=False):
     sc = SparkContext("local", "Proj2Query3")
