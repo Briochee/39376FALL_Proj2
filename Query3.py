@@ -8,7 +8,7 @@ def filter_relations(entry):
     source, relation, target = entry
     return relation in {'CuG', 'CdG', "CbG"}   # gene associations
 
-def main(show_compounds=False):
+def main(show_compounds=True):
     sc = SparkContext("local", "Proj2Query3")
     
     # load data
@@ -25,8 +25,11 @@ def main(show_compounds=False):
     # filter to get only compound-gene relationships
     compound_gene = edges_data.filter(filter_relations)
     
-    # filter nodes to get only genes and create a mapping from ID to name
+    # filter nodes to get only genes and create a mapping from ID to name for genes
     gene_id_to_name = nodes_data.filter(lambda x: x[2] == 'Gene').map(lambda x: (x[0], x[1])).collectAsMap()
+    
+    # filter nodes to get only compounds and create a mapping from ID to name for compounds
+    compound_id_to_name = nodes_data.filter(lambda x: x[2] == 'Compound').map(lambda x: (x[0], x[1])).collectAsMap()
     
     # map to (gene, compound) and remove duplicates
     gene_compound_pairs = compound_gene.map(lambda x: (x[2], x[0])).distinct()
@@ -43,12 +46,11 @@ def main(show_compounds=False):
     print("Query 3 Results")
     for count, genes in top_results:
         for gene in genes:
-            print(f"{gene} associated with {count} compounds")
             gene_name = gene_id_to_name.get(gene, "Unknown Gene")
-            print(f"  - gene name: {gene_name}")
+            print(f"{gene_name} associated with {count} compounds")
             if show_compounds:
-                # get compounds associated with the gene
-                compounds = gene_compound_pairs.filter(lambda x: x[0] == gene).map(lambda x: x[1]).collect()
+                # get compounds associated with the gene and fetch their names
+                compounds = gene_compound_pairs.filter(lambda x: x[0] == gene).map(lambda x: x[1]).map(lambda id: compound_id_to_name.get(id, "Unknown Compound")).collect()
                 print(f"    Compounds: {', '.join(compounds)}")
         
     sc.stop()
