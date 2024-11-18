@@ -34,8 +34,12 @@ def main(show_compounds=True):
     # map to (gene, compound) and remove duplicates
     gene_compound_pairs = compound_gene.map(lambda x: (x[2], x[0])).distinct()
     
-    # map to (gene, 1) and count the number of compounds per gene
-    gene_compound_counts = gene_compound_pairs.map(lambda x: (x[0], 1)).reduceByKey(lambda a, b: a + b)
+    # group compounds by gene and count unique compounds for each gene
+    gene_compound_counts = (
+        gene_compound_pairs
+        .groupByKey()  # Group all compound IDs by gene
+        .mapValues(lambda compounds: len(set(compounds)))  # Count unique compounds per gene
+    )
     
     # map to (count, gene) and group genes by compound count
     compound_count_genes = gene_compound_counts.map(lambda x: (x[1], x[0])).groupByKey().mapValues(list)
@@ -50,7 +54,7 @@ def main(show_compounds=True):
             print(f"{gene_name} associated with {count} compounds")
             if show_compounds:
                 # get compounds associated with the gene and fetch their names
-                compounds = gene_compound_pairs.filter(lambda x: x[0] == gene).map(lambda x: x[1]).map(lambda id: compound_id_to_name.get(id, "Unknown Compound")).collect()
+                compounds = gene_compound_pairs.filter(lambda x: x[0] == gene).map(lambda x: x[1]).distinct().map(lambda id: compound_id_to_name.get(id, "Unknown Compound")).collect()
                 print(f"    Compounds: {', '.join(compounds)}")
         
     sc.stop()

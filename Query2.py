@@ -6,7 +6,7 @@ def parse_line(line):
 
 def filter_relations(entry):
     source, relation, target = entry
-    return relation in {'CtD', 'CpD'}   # compound associations
+    return relation in {'CtD', 'CpD'}   # compound-disease associations
 
 def main(show_compounds=False): # default set to false to not print compounds associated
     sc = SparkContext("local", "Proj2Query2")
@@ -48,7 +48,7 @@ def main(show_compounds=False): # default set to false to not print compounds as
             print(f"  - disease name: {disease_name}")
             if show_compounds:
                 # get compounds associated with the disease
-                compounds = disease_compound_pairs.filter(lambda x: x[0] == disease).map(lambda x: x[1]).collect()
+                compounds = disease_compound_pairs.filter(lambda x: x[0] == disease).map(lambda x: x[1]).distinct().collect()
                 print(f"    Compounds: {', '.join(compounds)}")
         
     sc.stop()
