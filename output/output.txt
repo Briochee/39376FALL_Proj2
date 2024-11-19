@@ -11,20 +11,11 @@ Compound: Compound::DB00170
 	- 521 genes and 0 diseases
 
 Query 2 Results
-1 drugs are associated with 19 diseases
-    - Compound::DB00563
-2 drugs are associated with 17 diseases
-    - Compound::DB00997
-    - Compound::DB00635
-2 drugs are associated with 16 diseases
-    - Compound::DB01234
-    - Compound::DB00443
-2 drugs are associated with 14 diseases
-    - Compound::DB00860
-    - Compound::DB00445
-2 drugs are associated with 13 diseases
-    - Compound::DB00620
-    - Compound::DB00959
+1 compounds associated with 10 diseases
+2 compounds associated with 7 diseases
+3 compounds associated with 6 diseases
+11 compounds associated with 6 diseases
+9 compounds associated with 6 diseases
 
 Query 3 Results
 Crizotinib (Compound::DB08865) is associated with 580 unique genes
