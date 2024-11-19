@@ -1,15 +1,15 @@
 Query 1 Results
 Compound: Compound::DB08865
-	- 585 genes 1 diseases associated
+	- 580 genes and 1 diseases
 Compound: Compound::DB01254
-	- 564 genes 1 diseases associated
+	- 558 genes and 1 diseases
 Compound: Compound::DB00997
-	- 532 genes 17 diseases associated
-Compound: Compound::DB00570
-	- 523 genes 7 diseases associated
+	- 528 genes and 17 diseases
 Compound: Compound::DB00390
-	- 522 genes 2 diseases associated
-
+	- 521 genes and 2 diseases
+Compound: Compound::DB00170
+	- 521 genes and 0 diseases
+  
 Query 2 Results
 Disease::DOID:10763 associated with 70 compounds
   - disease name: hypertension
