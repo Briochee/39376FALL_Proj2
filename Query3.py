@@ -2,16 +2,16 @@ from pyspark import SparkContext
 
 def parse_line(line):
     parts = line.split('\t')
-    return (parts[0], parts[1], parts[2])
+    return (parts[0].strip(), parts[1].strip(), parts[2].strip())
 
 def filter_relations(entry):
     source, relation, target = entry
-    return relation in {'CuG', 'CdG', "CbG"}   # gene associations
+    return relation in {'CuG', 'CdG', 'CbG'}  # compound-gene associations
 
-def main(show_compounds=True):
+def main():
     sc = SparkContext("local", "Proj2Query3")
     
-    # load data
+    # load the data
     edges_lines = sc.textFile("hetionet/edges.tsv")
     nodes_lines = sc.textFile("hetionet/nodes.tsv")
     
@@ -25,38 +25,27 @@ def main(show_compounds=True):
     # filter to get only compound-gene relationships
     compound_gene = edges_data.filter(filter_relations)
     
-    # filter nodes to get only genes and create a mapping from ID to name for genes
-    gene_id_to_name = nodes_data.filter(lambda x: x[2] == 'Gene').map(lambda x: (x[0], x[1])).collectAsMap()
-    
-    # filter nodes to get only compounds and create a mapping from ID to name for compounds
+    # create a mapping from compound ID to name
     compound_id_to_name = nodes_data.filter(lambda x: x[2] == 'Compound').map(lambda x: (x[0], x[1])).collectAsMap()
     
-    # map to (gene, compound) and remove duplicates
-    gene_compound_pairs = compound_gene.map(lambda x: (x[2], x[0])).distinct()
+    # map to (compound, gene) and remove duplicates
+    compound_gene_pairs = compound_gene.map(lambda x: (x[0], x[2])).distinct()
     
-    # group compounds by gene and count unique compounds for each gene
-    gene_compound_counts = (
-        gene_compound_pairs
-        .groupByKey()  # Group all compound IDs by gene
-        .mapValues(lambda compounds: len(set(compounds)))  # Count unique compounds per gene
+    # group genes by compound and count unique genes for each compound
+    compound_gene_counts = (
+        compound_gene_pairs
+        .groupByKey()
+        .mapValues(lambda genes: len(set(genes)))
     )
     
-    # map to (count, gene) and group genes by compound count
-    compound_count_genes = gene_compound_counts.map(lambda x: (x[1], x[0])).groupByKey().mapValues(list)
-    
-    # sort by key (compound count) in descending order and take top 5
-    top_results = compound_count_genes.sortByKey(False).take(5)
+    # sort by number of genes in descending order and take the top 5 compounds
+    top_compounds = compound_gene_counts.sortBy(lambda x: x[1], ascending=False).take(5)
     
     print("Query 3 Results")
-    for count, genes in top_results:
-        for gene in genes:
-            gene_name = gene_id_to_name.get(gene, "Unknown Gene")
-            print(f"{gene_name} associated with {count} compounds")
-            if show_compounds:
-                # get compounds associated with the gene and fetch their names
-                compounds = gene_compound_pairs.filter(lambda x: x[0] == gene).map(lambda x: x[1]).distinct().map(lambda id: compound_id_to_name.get(id, "Unknown Compound")).collect()
-                print(f"    Compounds: {', '.join(compounds)}")
-        
+    for compound, gene_count in top_compounds:
+        compound_name = compound_id_to_name.get(compound, "Unknown Compound")
+        print(f"{compound_name} ({compound}) is associated with {gene_count} unique genes")
+    
     sc.stop()
 
 if __name__ == "__main__":
